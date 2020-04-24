@@ -1,0 +1,41 @@
+{
+  "failures": {
+    "default": "Internal error occurred",
+    "readfailure":"Error while fetching the data",
+    "writefailure": "Error while storing the data",
+    "invalidargumentfailure" : "Invalid argument",
+    "unsupportedfailure" : "Unsupported",
+    "unsupportedvaluefailure" : "Unsupported value",
+    "invalidvaluefailure" : "Invalid value",
+    "localechangefailure" : "Error while changing locale"
+  },
+  "home": {
+    "title": {
+      "page": " Home"
+    }
+  },
+  "settings": {
+    "title": {
+      "page": "Settings",
+      "general": "General"
+    },
+    "text": {
+      "general": {
+        "language": "Language",
+        "unit_system": "Unit system",
+        "unit_system_imperial": "imperial",
+        "unit_system_metric": "metric",
+        "theme": "Theme",
+        "theme_light": "Light",
+        "theme_dark": "Dark"
+      }
+    },
+    "hint": {
+      "search" : {
+        "language": "Select new language",
+        "unit_system": "Select new unit system",
+        "theme": "Select new theme"
+      }
+    }
+  }
+}

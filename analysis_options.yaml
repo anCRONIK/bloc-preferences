@@ -1,0 +1,13 @@
+include: package:lint/analysis_options.yaml
+
+
+
+analyzer:
+  errors:
+    missing_required_param: error
+    parameter_assignments: error
+    constant_identifier_names: ignore #we want our constants to be uppercase
+  exclude:
+    - "**/*.freezed.dart"
+    - "**/*.g.dart"
+    -  "**/*_test.dart"

@@ -1,0 +1,42 @@
+{
+  "failures": {
+    "default": "Interna greska",
+    "readfailure":"Greska prilikom citanja",
+    "writefailure": "Greska prilikom pisanja",
+    "invalidargumentfailure" : "Neispravan argument",
+    "unsupportedfailure" : "Nije podrzano",
+    "unsupportedvaluefailure" : "Vrijednost nije podrzana",
+    "invalidvaluefailure" : "Neispravna vrijednost",
+    "localechangefailure" : "Greska prilikom izmjene jezika"
+  },
+  "home": {
+    "title": {
+      "page": " Pocetna"
+    }
+  },
+  "settings": {
+    "title": {
+      "page": "Postavke",
+      "general": "Glavne postavke"
+    },
+    "text": {
+      "general": {
+        "language": "Jezik",
+        "unit_system": "Sustav mjernih jedinica",
+        "unit_system_imperial": "imperijski",
+        "unit_system_metric": "metricki",
+        "theme": "Pozadina",
+        "theme_light": "Svijetla",
+        "theme_dark": "Tamna"
+      }
+    },
+    "hint": {
+      "search": {
+        "language": "Odaberi jezik",
+        "unit_system": "Odaberi",
+        "theme": "Odaberi temu"
+      }
+    }
+  }
+
+}
