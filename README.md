@@ -29,3 +29,5 @@ You need to build stuff with build runner `flutter pub run build_runner build --
 # Test application
 
 It consist of two pages, home and settings
+
+![alt text](example.gif "Example")
