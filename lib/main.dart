@@ -66,6 +66,8 @@ class _MyAppState extends State<MyApp> {
         supportedLocales: supportedLanguages.keys.map<Locale>((locale) => Locale(locale)),
         locale: Locale(appPreferences.locale),
         theme: appPreferences.appTheme == appThemes[0] ? lightTheme : darkTheme,
-        home: const HomePage(),);
+        //if we add const, page won't be recreated on language change
+        // ignore: prefer_const_constructors
+        home: HomePage(),);
   }
 }

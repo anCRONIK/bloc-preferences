@@ -14,7 +14,8 @@ class SettingsPage extends StatelessWidget {
       return blocState.when(
           loaded: (AppPreferences appPreferences) => _buildListView(appPreferences),
           error: (AppPreferences appPreferences, Failure failure) {
-           //TODO show some error dialog
+            final snackBar = SnackBar(content: Text('${failureToMessage(failure)}'));
+            Scaffold.of(context).showSnackBar(snackBar);
             return _buildListView(appPreferences);
           });
     });
