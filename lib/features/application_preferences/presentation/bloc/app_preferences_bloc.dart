@@ -35,11 +35,11 @@ class AppPreferencesBloc extends Bloc<AppPreferenceBlocEvent, AppPreferencesBloc
     if (event is PreferenceChangeEvent) {
       final Failure validationFailure = _appPreferencesInputValidator.validate(preference: event.preference, value: event.value);
       if (validationFailure != null) {
-        yield AppPreferencesBlocState.error(_getStoreAppPreferences.getValues(),validationFailure);
+        yield AppPreferencesBlocState.error(validationFailure);
       }else{
         final Failure storeFailure = await _getStoreAppPreferences.updateValue(preference: event.preference, value: event.value);
         if (storeFailure != null) {
-          yield AppPreferencesBlocState.error(_getStoreAppPreferences.getValues(),storeFailure);
+          yield AppPreferencesBlocState.error(storeFailure);
         } else {
           checkLocale = event.preference == AppPreferences.keyLocale;
           final AppPreferences appPreferences = _getStoreAppPreferences.getValues();

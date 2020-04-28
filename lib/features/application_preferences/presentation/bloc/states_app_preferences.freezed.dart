@@ -12,15 +12,14 @@ T _$identity<T>(T value) => value;
 class _$AppPreferencesBlocStateTearOff {
   const _$AppPreferencesBlocStateTearOff();
 
-  _LoadedState loaded(AppPreferences appPreferences) {
-    return _LoadedState(
+  LoadedState loaded(AppPreferences appPreferences) {
+    return LoadedState(
       appPreferences,
     );
   }
 
-  _ErrorState error(AppPreferences appPreferences, Failure failure) {
-    return _ErrorState(
-      appPreferences,
+  ErrorState error(Failure failure) {
+    return ErrorState(
       failure,
     );
   }
@@ -30,39 +29,34 @@ class _$AppPreferencesBlocStateTearOff {
 const $AppPreferencesBlocState = _$AppPreferencesBlocStateTearOff();
 
 mixin _$AppPreferencesBlocState {
-  AppPreferences get appPreferences;
-
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result loaded(AppPreferences appPreferences),
-    @required Result error(AppPreferences appPreferences, Failure failure),
+    @required Result error(Failure failure),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loaded(AppPreferences appPreferences),
-    Result error(AppPreferences appPreferences, Failure failure),
+    Result error(Failure failure),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result loaded(_LoadedState value),
-    @required Result error(_ErrorState value),
+    @required Result loaded(LoadedState value),
+    @required Result error(ErrorState value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result loaded(_LoadedState value),
-    Result error(_ErrorState value),
+    Result loaded(LoadedState value),
+    Result error(ErrorState value),
     @required Result orElse(),
   });
-
-  $AppPreferencesBlocStateCopyWith<AppPreferencesBlocState> get copyWith;
 }
 
 abstract class $AppPreferencesBlocStateCopyWith<$Res> {
   factory $AppPreferencesBlocStateCopyWith(AppPreferencesBlocState value,
           $Res Function(AppPreferencesBlocState) then) =
       _$AppPreferencesBlocStateCopyWithImpl<$Res>;
-  $Res call({AppPreferences appPreferences});
 }
 
 class _$AppPreferencesBlocStateCopyWithImpl<$Res>
@@ -72,43 +66,30 @@ class _$AppPreferencesBlocStateCopyWithImpl<$Res>
   final AppPreferencesBlocState _value;
   // ignore: unused_field
   final $Res Function(AppPreferencesBlocState) _then;
-
-  @override
-  $Res call({
-    Object appPreferences = freezed,
-  }) {
-    return _then(_value.copyWith(
-      appPreferences: appPreferences == freezed
-          ? _value.appPreferences
-          : appPreferences as AppPreferences,
-    ));
-  }
 }
 
-abstract class _$LoadedStateCopyWith<$Res>
-    implements $AppPreferencesBlocStateCopyWith<$Res> {
-  factory _$LoadedStateCopyWith(
-          _LoadedState value, $Res Function(_LoadedState) then) =
-      __$LoadedStateCopyWithImpl<$Res>;
-  @override
+abstract class $LoadedStateCopyWith<$Res> {
+  factory $LoadedStateCopyWith(
+          LoadedState value, $Res Function(LoadedState) then) =
+      _$LoadedStateCopyWithImpl<$Res>;
   $Res call({AppPreferences appPreferences});
 }
 
-class __$LoadedStateCopyWithImpl<$Res>
+class _$LoadedStateCopyWithImpl<$Res>
     extends _$AppPreferencesBlocStateCopyWithImpl<$Res>
-    implements _$LoadedStateCopyWith<$Res> {
-  __$LoadedStateCopyWithImpl(
-      _LoadedState _value, $Res Function(_LoadedState) _then)
-      : super(_value, (v) => _then(v as _LoadedState));
+    implements $LoadedStateCopyWith<$Res> {
+  _$LoadedStateCopyWithImpl(
+      LoadedState _value, $Res Function(LoadedState) _then)
+      : super(_value, (v) => _then(v as LoadedState));
 
   @override
-  _LoadedState get _value => super._value as _LoadedState;
+  LoadedState get _value => super._value as LoadedState;
 
   @override
   $Res call({
     Object appPreferences = freezed,
   }) {
-    return _then(_LoadedState(
+    return _then(LoadedState(
       appPreferences == freezed
           ? _value.appPreferences
           : appPreferences as AppPreferences,
@@ -116,8 +97,8 @@ class __$LoadedStateCopyWithImpl<$Res>
   }
 }
 
-class _$_LoadedState with DiagnosticableTreeMixin implements _LoadedState {
-  const _$_LoadedState(this.appPreferences) : assert(appPreferences != null);
+class _$LoadedState with DiagnosticableTreeMixin implements LoadedState {
+  const _$LoadedState(this.appPreferences) : assert(appPreferences != null);
 
   @override
   final AppPreferences appPreferences;
@@ -138,7 +119,7 @@ class _$_LoadedState with DiagnosticableTreeMixin implements _LoadedState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LoadedState &&
+        (other is LoadedState &&
             (identical(other.appPreferences, appPreferences) ||
                 const DeepCollectionEquality()
                     .equals(other.appPreferences, appPreferences)));
@@ -150,14 +131,14 @@ class _$_LoadedState with DiagnosticableTreeMixin implements _LoadedState {
       const DeepCollectionEquality().hash(appPreferences);
 
   @override
-  _$LoadedStateCopyWith<_LoadedState> get copyWith =>
-      __$LoadedStateCopyWithImpl<_LoadedState>(this, _$identity);
+  $LoadedStateCopyWith<LoadedState> get copyWith =>
+      _$LoadedStateCopyWithImpl<LoadedState>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result loaded(AppPreferences appPreferences),
-    @required Result error(AppPreferences appPreferences, Failure failure),
+    @required Result error(Failure failure),
   }) {
     assert(loaded != null);
     assert(error != null);
@@ -168,7 +149,7 @@ class _$_LoadedState with DiagnosticableTreeMixin implements _LoadedState {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loaded(AppPreferences appPreferences),
-    Result error(AppPreferences appPreferences, Failure failure),
+    Result error(Failure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -181,8 +162,8 @@ class _$_LoadedState with DiagnosticableTreeMixin implements _LoadedState {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result loaded(_LoadedState value),
-    @required Result error(_ErrorState value),
+    @required Result loaded(LoadedState value),
+    @required Result error(ErrorState value),
   }) {
     assert(loaded != null);
     assert(error != null);
@@ -192,8 +173,8 @@ class _$_LoadedState with DiagnosticableTreeMixin implements _LoadedState {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result loaded(_LoadedState value),
-    Result error(_ErrorState value),
+    Result loaded(LoadedState value),
+    Result error(ErrorState value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -204,61 +185,48 @@ class _$_LoadedState with DiagnosticableTreeMixin implements _LoadedState {
   }
 }
 
-abstract class _LoadedState implements AppPreferencesBlocState {
-  const factory _LoadedState(AppPreferences appPreferences) = _$_LoadedState;
+abstract class LoadedState implements AppPreferencesBlocState {
+  const factory LoadedState(AppPreferences appPreferences) = _$LoadedState;
 
-  @override
   AppPreferences get appPreferences;
-  @override
-  _$LoadedStateCopyWith<_LoadedState> get copyWith;
+  $LoadedStateCopyWith<LoadedState> get copyWith;
 }
 
-abstract class _$ErrorStateCopyWith<$Res>
-    implements $AppPreferencesBlocStateCopyWith<$Res> {
-  factory _$ErrorStateCopyWith(
-          _ErrorState value, $Res Function(_ErrorState) then) =
-      __$ErrorStateCopyWithImpl<$Res>;
-  @override
-  $Res call({AppPreferences appPreferences, Failure failure});
+abstract class $ErrorStateCopyWith<$Res> {
+  factory $ErrorStateCopyWith(
+          ErrorState value, $Res Function(ErrorState) then) =
+      _$ErrorStateCopyWithImpl<$Res>;
+  $Res call({Failure failure});
 }
 
-class __$ErrorStateCopyWithImpl<$Res>
+class _$ErrorStateCopyWithImpl<$Res>
     extends _$AppPreferencesBlocStateCopyWithImpl<$Res>
-    implements _$ErrorStateCopyWith<$Res> {
-  __$ErrorStateCopyWithImpl(
-      _ErrorState _value, $Res Function(_ErrorState) _then)
-      : super(_value, (v) => _then(v as _ErrorState));
+    implements $ErrorStateCopyWith<$Res> {
+  _$ErrorStateCopyWithImpl(ErrorState _value, $Res Function(ErrorState) _then)
+      : super(_value, (v) => _then(v as ErrorState));
 
   @override
-  _ErrorState get _value => super._value as _ErrorState;
+  ErrorState get _value => super._value as ErrorState;
 
   @override
   $Res call({
-    Object appPreferences = freezed,
     Object failure = freezed,
   }) {
-    return _then(_ErrorState(
-      appPreferences == freezed
-          ? _value.appPreferences
-          : appPreferences as AppPreferences,
+    return _then(ErrorState(
       failure == freezed ? _value.failure : failure as Failure,
     ));
   }
 }
 
-class _$_ErrorState with DiagnosticableTreeMixin implements _ErrorState {
-  const _$_ErrorState(this.appPreferences, this.failure)
-      : assert(appPreferences != null),
-        assert(failure != null);
+class _$ErrorState with DiagnosticableTreeMixin implements ErrorState {
+  const _$ErrorState(this.failure) : assert(failure != null);
 
-  @override
-  final AppPreferences appPreferences;
   @override
   final Failure failure;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AppPreferencesBlocState.error(appPreferences: $appPreferences, failure: $failure)';
+    return 'AppPreferencesBlocState.error(failure: $failure)';
   }
 
   @override
@@ -266,52 +234,46 @@ class _$_ErrorState with DiagnosticableTreeMixin implements _ErrorState {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'AppPreferencesBlocState.error'))
-      ..add(DiagnosticsProperty('appPreferences', appPreferences))
       ..add(DiagnosticsProperty('failure', failure));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ErrorState &&
-            (identical(other.appPreferences, appPreferences) ||
-                const DeepCollectionEquality()
-                    .equals(other.appPreferences, appPreferences)) &&
+        (other is ErrorState &&
             (identical(other.failure, failure) ||
                 const DeepCollectionEquality().equals(other.failure, failure)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(appPreferences) ^
-      const DeepCollectionEquality().hash(failure);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
 
   @override
-  _$ErrorStateCopyWith<_ErrorState> get copyWith =>
-      __$ErrorStateCopyWithImpl<_ErrorState>(this, _$identity);
+  $ErrorStateCopyWith<ErrorState> get copyWith =>
+      _$ErrorStateCopyWithImpl<ErrorState>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result loaded(AppPreferences appPreferences),
-    @required Result error(AppPreferences appPreferences, Failure failure),
+    @required Result error(Failure failure),
   }) {
     assert(loaded != null);
     assert(error != null);
-    return error(appPreferences, failure);
+    return error(failure);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loaded(AppPreferences appPreferences),
-    Result error(AppPreferences appPreferences, Failure failure),
+    Result error(Failure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (error != null) {
-      return error(appPreferences, failure);
+      return error(failure);
     }
     return orElse();
   }
@@ -319,8 +281,8 @@ class _$_ErrorState with DiagnosticableTreeMixin implements _ErrorState {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result loaded(_LoadedState value),
-    @required Result error(_ErrorState value),
+    @required Result loaded(LoadedState value),
+    @required Result error(ErrorState value),
   }) {
     assert(loaded != null);
     assert(error != null);
@@ -330,8 +292,8 @@ class _$_ErrorState with DiagnosticableTreeMixin implements _ErrorState {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result loaded(_LoadedState value),
-    Result error(_ErrorState value),
+    Result loaded(LoadedState value),
+    Result error(ErrorState value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -342,13 +304,9 @@ class _$_ErrorState with DiagnosticableTreeMixin implements _ErrorState {
   }
 }
 
-abstract class _ErrorState implements AppPreferencesBlocState {
-  const factory _ErrorState(AppPreferences appPreferences, Failure failure) =
-      _$_ErrorState;
+abstract class ErrorState implements AppPreferencesBlocState {
+  const factory ErrorState(Failure failure) = _$ErrorState;
 
-  @override
-  AppPreferences get appPreferences;
   Failure get failure;
-  @override
-  _$ErrorStateCopyWith<_ErrorState> get copyWith;
+  $ErrorStateCopyWith<ErrorState> get copyWith;
 }

@@ -10,6 +10,6 @@ part 'states_app_preferences.freezed.dart';
 /// Here we need to set all variables that we want to bes saved in application preferences. This is features.application_preferences.data classed which is generated with freezed runner plugin.
 @freezed
 abstract class AppPreferencesBlocState with _$AppPreferencesBlocState {
-  const factory AppPreferencesBlocState.loaded(AppPreferences appPreferences) = _LoadedState;
-  const factory AppPreferencesBlocState.error(AppPreferences appPreferences, Failure failure) = _ErrorState;
+  const factory AppPreferencesBlocState.loaded(AppPreferences appPreferences) = LoadedState;
+  const factory AppPreferencesBlocState.error(Failure failure) = ErrorState;
 }

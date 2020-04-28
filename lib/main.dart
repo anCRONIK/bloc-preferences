@@ -27,12 +27,8 @@ Future<void> main() async {
 }
 
 /// Implementation of application
-class MyApp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _MyAppState();
-}
+class MyApp extends StatelessWidget {
 
-class _MyAppState extends State<MyApp> {
   final Logger log = Logger('MyApp');
 
   @override
@@ -40,31 +36,24 @@ class _MyAppState extends State<MyApp> {
     //lets make our app portrait only
     log.finest("Building my app");
 
-    return BlocProvider(
-      create: (context) => getIt<AppPreferencesBloc>(),
-      child: BlocBuilder<AppPreferencesBloc, AppPreferencesBlocState>(
-        builder: _appPreferenceBlocBuilder,
-      ),
-    );
+    return BlocProvider.value(
+        value: getIt<AppPreferencesBloc>(),
+        child: BlocConsumer<AppPreferencesBloc, AppPreferencesBlocState>(listenWhen: (previous, current) {
+          return current.when(loaded: (val) => false, error: (val) => true);
+        }, listener: (context, state) {
+          final snackBar = SnackBar(content: Text(translate(failureToMessage((state as ErrorState).failure))));
+          Scaffold.of(context).showSnackBar(snackBar);
+        }, buildWhen: (previous, current) {
+          return current.when(loaded: (val) => true, error: (val) => false);
+        }, builder: (context, state) {
+          //here we should be only in loaded state
+          return _createMaterialApp(context, (state as LoadedState).appPreferences);
+        }));
   }
 
-  /// Method for handling [AppPreferencesBlocState] states
-  Widget _appPreferenceBlocBuilder(BuildContext context, AppPreferencesBlocState blocState) {
-    return blocState.when(loaded: (AppPreferences appPreferences) {
-      log.finest("Loaded app preferences: $appPreferences");
-      return _createMaterialApp(appPreferences, context);
-    }, error: (AppPreferences appPreferences, Failure failure) {
-      //TODO handle error with some snackbar or alert dialog
-      Future.delayed(const Duration(seconds: 1), (){
-        final snackBar = SnackBar(content: Text('${failureToMessage(failure)}'));
-        Scaffold.of(context).showSnackBar(snackBar);
-      });
-      log.finest("Error occured $failure, preferences: $appPreferences");
-      return _createMaterialApp(appPreferences, context);
-    });
-  }
 
-  Widget _createMaterialApp(AppPreferences appPreferences, BuildContext context) {
+  /// Method for creating material applicaiton
+  Widget _createMaterialApp(BuildContext context, AppPreferences appPreferences) {
     return MaterialApp(
         darkTheme: darkTheme,
         localizationsDelegates: [GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate],
