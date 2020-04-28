@@ -46,10 +46,15 @@ class AppPreferencesBloc extends Bloc<AppPreferenceBlocEvent, AppPreferencesBloc
           if (checkLocale == true) {
             await changeLanguage(event.value as String);
           }
-          yield AppPreferencesBlocState.loaded(appPreferences);
         }
       }
     }
+    yield* _reloadPreferences();
   }
 
+  /// Method for loading stored application preferences and yielding stream
+  Stream<AppPreferencesBlocState> _reloadPreferences() async* {
+    final AppPreferences appPreferences = _getStoreAppPreferences.getValues();
+    yield AppPreferencesBlocState.loaded(appPreferences);
+  }
 }

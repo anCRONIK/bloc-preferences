@@ -38,12 +38,7 @@ class MyApp extends StatelessWidget {
 
     return BlocProvider.value(
         value: getIt<AppPreferencesBloc>(),
-        child: BlocConsumer<AppPreferencesBloc, AppPreferencesBlocState>(listenWhen: (previous, current) {
-          return current.when(loaded: (val) => false, error: (val) => true);
-        }, listener: (context, state) {
-          final snackBar = SnackBar(content: Text(translate(failureToMessage((state as ErrorState).failure))));
-          Scaffold.of(context).showSnackBar(snackBar);
-        }, buildWhen: (previous, current) {
+        child: BlocBuilder<AppPreferencesBloc, AppPreferencesBlocState>(condition: (previous, current) {
           return current.when(loaded: (val) => true, error: (val) => false);
         }, builder: (context, state) {
           //here we should be only in loaded state

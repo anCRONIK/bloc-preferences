@@ -62,7 +62,7 @@ void main() {
         return preferenceBloc;
       },
       act: (bloc) => bloc.add(AppPreferenceBlocEvent.update(preference: tPreference, value: tValue)) as Future,
-      expect: [AppPreferencesBlocState.error(UnsupportedValueFailure())],
+      expect: [AppPreferencesBlocState.error(UnsupportedValueFailure()), AppPreferencesBlocState.loaded(AppPreferences.initial())],
     );
 
     blocTest(
@@ -74,7 +74,7 @@ void main() {
         return preferenceBloc;
       },
       act: (bloc) => bloc.add(AppPreferenceBlocEvent.update(preference: tPreference, value: tValue)) as Future,
-      expect: [AppPreferencesBlocState.error(WriteFailure())],
+      expect: [AppPreferencesBlocState.error(WriteFailure()), AppPreferencesBlocState.loaded(AppPreferences.initial())],
     );
 
     blocTest(
