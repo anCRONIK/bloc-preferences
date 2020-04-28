@@ -10,25 +10,23 @@ import '../widgets/settings/card_general.dart';
 class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppPreferencesBloc, AppPreferencesBlocState>(builder: (BuildContext context, AppPreferencesBlocState blocState) {
-      return blocState.when(
-          loaded: (AppPreferences appPreferences) => _buildListView(appPreferences),
-          error: (AppPreferences appPreferences, Failure failure) {
-            final snackBar = SnackBar(content: Text('${failureToMessage(failure)}'));
-            Scaffold.of(context).showSnackBar(snackBar);
-            return _buildListView(appPreferences);
-          });
-    });
+    final bloc = BlocProvider.of<AppPreferencesBloc>(context);
+    return StreamBuilder(
+      stream: bloc,
+      initialData: bloc.state,
+      builder: (context, snap) {
+        //TODO do we need to handle snap states?
+        final appPreferences = (snap.data as AppPreferencesBlocState).appPreferences;
+        return Scaffold(
+            appBar: AppBar(),
+            body: SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: <Widget>[CardGeneral(appPreferences)],
+              ),
+            ));
+      },
+    );
   }
 }
 
-Widget _buildListView(AppPreferences appPreferences) {
-  return Scaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[CardGeneral(appPreferences)],
-        ),
-      ));
-}

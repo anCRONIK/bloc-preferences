@@ -54,6 +54,11 @@ class _MyAppState extends State<MyApp> {
       log.finest("Loaded app preferences: $appPreferences");
       return _createMaterialApp(appPreferences, context);
     }, error: (AppPreferences appPreferences, Failure failure) {
+      //TODO handle error with some snackbar or alert dialog
+      Future.delayed(const Duration(seconds: 1), (){
+        final snackBar = SnackBar(content: Text('${failureToMessage(failure)}'));
+        Scaffold.of(context).showSnackBar(snackBar);
+      });
       log.finest("Error occured $failure, preferences: $appPreferences");
       return _createMaterialApp(appPreferences, context);
     });
