@@ -10,7 +10,6 @@ import 'events_app_preferences.dart';
 import 'states_app_preferences.dart';
 
 /// Bloc implementation for application theme
-@injectable
 class AppPreferencesBloc extends Bloc<AppPreferenceBlocEvent, AppPreferencesBlocState> {
   final Logger log = Logger('AppPreferencesBloc');
 

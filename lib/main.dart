@@ -7,7 +7,9 @@ import 'core/i18n/translations.dart';
 import 'core/presentation/themes.dart';
 import 'dependency_injection.dart';
 import 'features/application_preferences/domain/entities/app_preferences.dart';
+import 'features/application_preferences/domain/usecases/get_and_store_app_preferences.dart';
 import 'features/application_preferences/presentation/bloc/bloc.dart';
+import 'features/application_preferences/presentation/util/app_preferences_input_validator.dart';
 import 'features/test_app/presentation/pages/home_page.dart';
 import 'logger.dart' as logconfig;
 
@@ -36,8 +38,8 @@ class MyApp extends StatelessWidget {
     //lets make our app portrait only
     log.finest("Building my app");
 
-    return BlocProvider.value(
-        value: getIt<AppPreferencesBloc>(),
+    return BlocProvider(
+        create: (context) => AppPreferencesBloc(getIt<GetAndStoreAppPreferences>(), getIt<AppPreferencesInputValidator>()),
         child: BlocBuilder<AppPreferencesBloc, AppPreferencesBlocState>(condition: (previous, current) {
           return current.when(loaded: (val) => true, error: (val) => false);
         }, builder: (context, state) {
@@ -45,7 +47,6 @@ class MyApp extends StatelessWidget {
           return _createMaterialApp(context, (state as LoadedState).appPreferences);
         }));
   }
-
 
   /// Method for creating material applicaiton
   Widget _createMaterialApp(BuildContext context, AppPreferences appPreferences) {

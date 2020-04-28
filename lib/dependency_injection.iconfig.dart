@@ -14,7 +14,6 @@ import 'package:blocpreferences/features/application_preferences/data/repositori
 import 'package:blocpreferences/features/application_preferences/domain/repositories/app_preferences_repository.dart';
 import 'package:blocpreferences/features/application_preferences/domain/usecases/get_and_store_app_preferences.dart';
 import 'package:blocpreferences/features/application_preferences/domain/usecases/translator.dart';
-import 'package:blocpreferences/features/application_preferences/presentation/bloc/app_preferences_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 Future<void> $initGetIt(GetIt g, {String environment}) async {
@@ -34,8 +33,6 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
       () => AppPreferencesRepositoryImpl(g<PreferencesDataSource>()));
   g.registerLazySingleton<GetAndStoreAppPreferences>(
       () => GetAndStoreAppPreferences(g<AppPreferencesRepository>()));
-  g.registerFactory<AppPreferencesBloc>(() => AppPreferencesBloc(
-      g<GetAndStoreAppPreferences>(), g<AppPreferencesInputValidator>()));
 
   //Eager singletons must be registered in the right order
   g.registerSingleton<Translator>(Translator(
